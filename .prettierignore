@@ -3,6 +3,7 @@
 .output.js
 /node_modules/**
 .eslintrc.js
+vue.config.js
 
 **/*.svg
 **/*.sh
