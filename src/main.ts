@@ -19,5 +19,20 @@ app.mount('#app')
 
 hyRequest.request({
   url: 'get',
-  method: 'GET'
+  method: 'GET',
+  interceptors: {
+    requestInterceptor: (config) => {
+      console.log('单独请求的congfig')
+      return config
+    },
+    responseInterceptor: (res) => {
+      console.log('单独响应的response')
+      return res
+    }
+  }
 })
+
+// hyRequest.request({
+//   url: 'get',
+//   method: 'GET'
+// })
