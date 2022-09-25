@@ -6,8 +6,14 @@ import { BASE_URL, TIME_OUT } from './request/config'
 const hyRequest = new HYRequest({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
+  // showLoading: false,
   interceptors: {
     requestInterceptor: (config) => {
+      //携带token的拦截
+      const token = ''
+      if (token) {
+        if (config.headers) config.headers.Authorization = `Bearer ${token}`
+      }
       console.log('请求成功的拦截')
       return config
     },
