@@ -31,9 +31,18 @@ app.mount('#app')
 //     }
 //   }
 // })
-
-hyRequest.request({
-  url: 'get',
-  method: 'GET',
-  showLoading: false
-})
+interface DataType {
+  data: any
+  returnCode?: string
+  success?: boolean
+  headers?: any
+}
+hyRequest
+  .request<DataType>({
+    url: 'get',
+    method: 'GET',
+    showLoading: false
+  })
+  .then((res) => {
+    console.log('res.data', res.headers)
+  })

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type { AxiosInstance } from 'axios'
 import type { HYRequestConfig, HYRequestInterceptors } from './type'
-import { ElLoading } from 'element-plus'
+import { configProviderContextKey, ElLoading } from 'element-plus'
 import { LoadingInstance } from 'element-plus/lib/components/loading/src/loading'
 
 const DEAFULT_LOADING = true
@@ -75,21 +75,65 @@ class HYRequest {
     )
   }
 
-  request(config: HYRequestConfig): void {
-    //1.单个请求对请求config的处理
-    if (config.interceptors?.requestInterceptor) {
-      config = config.interceptors.requestInterceptor(config)
-    }
-    //2.判断是否需要显示loading
-    if (config.showLoading === false) {
-      this.showLoading = config.showLoading
-    }
-    this.instance.request(config).then((res) => {
-      if (config.interceptors?.responseInterceptor) {
-        res = config.interceptors.responseInterceptor(res)
+  // request(config: HYRequestConfig): void {
+  //   //1.单个请求对请求config的处理
+  //   if (config.interceptors?.requestInterceptor) {
+  //     config = config.interceptors.requestInterceptor(config)
+  //   }
+  //   //2.判断是否需要显示loading
+  //   if (config.showLoading === false) {
+  //     this.showLoading = config.showLoading
+  //   }
+  //   this.instance.request(config).then((res) => {
+  //     if (config.interceptors?.responseInterceptor) {
+  //       res = config.interceptors.responseInterceptor(res)
+  //     }
+  //     console.log(res)
+  //   })
+  // }
+
+  request<T>(config: HYRequestConfig<T>): Promise<T> {
+    return new Promise((resolve, reject) => {
+      //1.单个请求对请求config的处理
+      if (config.interceptors?.requestInterceptor) {
+        config = config.interceptors.requestInterceptor(config)
       }
-      console.log(res)
+      //2.判断是否需要显示loading
+      if (config.showLoading === false) {
+        this.showLoading = config.showLoading
+      }
+      this.instance
+        .request<any, T>(config)
+        .then((res) => {
+          if (config.interceptors?.responseInterceptor) {
+            res = config.interceptors.responseInterceptor(res)
+          }
+          this.showLoading = DEAFULT_LOADING
+
+          resolve(res)
+        })
+        .catch((err) => {
+          this.showLoading = DEAFULT_LOADING
+          reject(err)
+          return err
+        })
     })
+  }
+
+  get<T>(config: HYRequestConfig<T>): Promise<T> {
+    return this.request<T>({ ...config, method: 'GET' })
+  }
+
+  post<T>(config: HYRequestConfig<T>): Promise<T> {
+    return this.request<T>({ ...config, method: 'POST' })
+  }
+
+  delete<T>(config: HYRequestConfig<T>): Promise<T> {
+    return this.request<T>({ ...config, method: 'DELETE' })
+  }
+
+  patch<T>(config: HYRequestConfig<T>): Promise<T> {
+    return this.request<T>({ ...config, method: 'PATCH' })
   }
 }
 
