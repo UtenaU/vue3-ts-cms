@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type { AxiosInstance } from 'axios'
 import type { HYRequestConfig, HYRequestInterceptors } from './type'
-import { configProviderContextKey, ElLoading } from 'element-plus'
+import { ElLoading } from 'element-plus'
 import { LoadingInstance } from 'element-plus/lib/components/loading/src/loading'
 
 const DEAFULT_LOADING = true
