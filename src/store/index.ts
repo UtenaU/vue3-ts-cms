@@ -5,7 +5,10 @@ const store = createStore({
     return {
       name: 'nadia'
     }
-  }
+  },
+  mutations: {},
+  getters: {},
+  actions: {}
 })
 
 export default store
