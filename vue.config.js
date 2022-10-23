@@ -5,7 +5,25 @@ module.exports = defineConfig({
   //配置方式一：CLI提供的属性
   outputDir: './dist',
   publicPath:'./',
+  devServer: {
+    proxy: {
+      '^/api': {
+        target: 'localhost:3000',
+        pathRewrite: {
+          '^/api': ''
+        },
+        changeOrigin: true
+      }
+    }
+  },
   //配置方式二： 和webpacl属性完全一致，最后会进行合并
+  configureWebpack: {
+    resolve: {
+      alias: {
+        components: '@/components'
+      }
+    }
+  }
   // configureWebpack:{
   //   resolve:{
   //     alias: {
@@ -20,11 +38,11 @@ module.exports = defineConfig({
   //   }
   // }
   //配置方式三：链式
-  chainWebpack: (config) => {
-    config.resolve.alias
-    .set('@', path.resolve(__dirname, 'src'))
-    .set('components', '@/components')
-  }
+  // chainWebpack: (config) => {
+  //   config.resolve.alias
+  //   .set('@', path.resolve(__dirname, 'src'))
+  //   .set('components', '@/components')
+  // }
 
 })
 

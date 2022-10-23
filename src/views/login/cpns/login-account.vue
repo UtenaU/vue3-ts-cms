@@ -33,8 +33,10 @@ export default defineComponent({
       // console.log('aaaaa')
       formRef.value?.validate((valid) => {
         if (valid) {
+          //1.判断是否需要记住密码
           // console.log('真正执行登录逻辑')
           if (isKeepPassword) {
+            // 本地缓存
             localCache.setCache('name', account.name)
             localCache.setCache('password', account.password)
           } else {
@@ -42,6 +44,8 @@ export default defineComponent({
             localCache.deleteCache('password')
           }
         }
+        //2.开始进行登录验证
+        store.dispatch('login/accountLoginAction', { ...account })
       })
     }
 
