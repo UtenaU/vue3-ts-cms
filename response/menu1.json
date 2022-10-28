@@ -1,0 +1,33 @@
+{
+  "code": 0,
+  "data": [
+    {
+      "id": 38,
+      "name": "系统总览",
+      "type": 1,
+      "url": "/main/analysis",
+      "icon": "el-icon-monitor",
+      "sort": 1,
+      "children": [
+        {
+          "id": 39,
+          "url":"/main/analysis/overview",
+          "name": "核心技术",
+          "sort": 106,
+          "type": 2,
+          "children":null,
+          "parentId": 38
+        },
+        {
+          "id": 40,
+          "url":"/main/analysis/dashboard",
+          "name": "商品统计",
+          "sort": 107,
+          "type": 2,
+          "children":null,
+          "parentId": 38
+        }
+      ]
+    }
+  ]
+}
