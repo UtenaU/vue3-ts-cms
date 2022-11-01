@@ -2,7 +2,7 @@
   <div class="nav-menu">
     <div class="logo">
       <img class="img" src="~@/assets/img/logo.svg" alt="logo" />
-      <span class="title">CMS</span>
+      <span class="title" v-if="!collapse">CMS</span>
     </div>
     <el-menu
       default-active="2"
@@ -18,7 +18,11 @@
           <!-- 二级菜单的可以展开的标题 -->
           <el-sub-menu :index="item.id + ''">
             <template #title>
-              <i v-if="item.icon" :class="item.icon"></i>
+              <el-icon>
+                <!-- <:item.icon></:item.icon> -->
+                <component :is="item.icon"></component>
+              </el-icon>
+              <!-- <i v-if="item.icon" :class="item.icon"></i> -->
               <span>{{ item.name }}</span>
             </template>
             <!-- 遍历里面的item -->

@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { registerApp } from './global'
 import 'normalize.css'
 import './assets/css/index.less'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // import './service/axios_demo'
 // import ElementPlus from 'element-plus'
 // import 'element-plus/dist/index.css'
@@ -14,6 +15,9 @@ import { setupStore } from './store'
 import hyRequest from './service'
 
 const app = createApp(App)
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 registerApp(app)
 app.use(router)
 app.use(store)
