@@ -45,14 +45,14 @@ module.exports = defineConfig({
     //   }
     // }
   },
-  //配置方式二： 和webpacl属性完全一致，最后会进行合并
-  configureWebpack: {
-    resolve: {
-      alias: {
-        components: '@/components'
-      }
-    }
-  }
+  //配置方式二： 和webpack属性完全一致，最后会进行合并
+  // configureWebpack: {
+  //   resolve: {
+  //     alias: {
+  //       components: '@/components'
+  //     }
+  //   }
+  // }
   // configureWebpack:{
   //   resolve:{
   //     alias: {
@@ -60,12 +60,13 @@ module.exports = defineConfig({
   //     }
   //   }
   // }
-  // configureWebpack: (config) => {
-  //   config.resolve.alias = {
-  //     '@': path.resolve(__dirname, 'src'),
-  //     components: '@/components'
-  //   }
-  // }
+  configureWebpack: (config) => {
+    config.resolve.alias = {
+      '@': path.resolve(__dirname, 'src'),
+      components: '@/components',
+      '@@': path.resolve(__dirname)
+    }
+  }
   //配置方式三：链式
   // chainWebpack: (config) => {
   //   config.resolve.alias

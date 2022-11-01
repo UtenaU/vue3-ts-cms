@@ -28,6 +28,108 @@
           "parentId": 38
         }
       ]
+    },
+    {
+      "id": 41,
+      "name": "系统管理",
+      "type": 1,
+      "url":"/main/system",
+      "icon":"el-icon-setting",
+      "sort":2,
+      "children":[
+        {
+          "id":42,
+          "url":"/main/system/user",
+          "name":"用户管理",
+          "sort":108,
+          "type":2,
+          "children":null,
+          "parentId": 41
+        },
+        {
+          "id":43,
+          "url":"/main/system/department",
+          "name":"部门管理",
+          "sort":110,
+          "type":2,
+          "children":null,
+          "parentId": 41
+        },
+        {
+          "id":44,
+          "url":"/main/system/menu",
+          "name":"菜单管理",
+          "sort":111,
+          "type":2,
+          "children":null,
+          "parentId": 41
+        },
+        {
+          "id":45,
+          "url":"/main/system/role",
+          "name":"角色管理",
+          "sort":112,
+          "type":2,
+          "children":null,
+          "parentId": 41
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "name": "商品管理",
+      "type": 1,
+      "url":"/main/product",
+      "icon":"el-icon-ShoppingBag",
+      "sort":2,
+      "children":[
+        {
+          "id":47,
+          "url":"/main/product/category",
+          "name":"商品类别",
+          "sort":113,
+          "type":2,
+          "children":null,
+          "parentId": 46
+        },
+        {
+          "id":48,
+          "url":"/main/product/goods",
+          "name":"商品类别",
+          "sort":114,
+          "type":2,
+          "children":null,
+          "parentId": 46
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "name": "随便聊聊",
+      "type": 1,
+      "url":"/main/story",
+      "icon":"el-icon-ChatLineSquare",
+      "sort":2,
+      "children":[
+        {
+          "id":50,
+          "url":"/main/story/chat",
+          "name":"你的故事",
+          "sort":115,
+          "type":2,
+          "children":null,
+          "parentId": 49
+        },
+        {
+          "id":51,
+          "url":"/main/story/list",
+          "name":"故事列表",
+          "sort":116,
+          "type":2,
+          "children":null,
+          "parentId": 49
+        }
+      ]
     }
   ]
 }

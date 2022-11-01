@@ -1,29 +1,45 @@
 import { App } from 'vue'
 import 'element-plus/dist/index.css'
 import {
+  ElAside,
   ElButton,
-  ElAlert,
+  ElCheckbox,
+  ElContainer,
   ElForm,
   ElFormItem,
+  ElHeader,
   ElInput,
+  ElLink,
+  ElMain,
+  ElMenu,
+  ElMenuItem,
+  ElMenuItemGroup,
   ElRadio,
+  ElSubMenu,
   ElTabPane,
   ElTabs,
-  ElLink,
-  ElCheckbox
+  ElIcon
 } from 'element-plus'
 
 const components = [
   ElButton,
-  ElAlert,
   ElForm,
   ElFormItem,
   ElInput,
   ElRadio,
   ElTabs,
   ElTabPane,
+  ElCheckbox,
   ElLink,
-  ElCheckbox
+  ElContainer,
+  ElHeader,
+  ElMain,
+  ElAside,
+  ElMenu,
+  ElMenuItem,
+  ElMenuItemGroup,
+  ElSubMenu,
+  ElIcon
 ]
 
 export default function (app: App): void {
