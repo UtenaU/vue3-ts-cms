@@ -27,7 +27,10 @@
             </template>
             <!-- 遍历里面的item -->
             <template v-for="subitem in item.children" :key="subitem.id">
-              <el-menu-item :index="subitem.id + ''">
+              <el-menu-item
+                :index="subitem.id + ''"
+                @click="handleMenuItemClick(subitem)"
+              >
                 <i v-if="subitem.icon" :class="subitem.icon"></i>
                 <span>{{ subitem.name }}</span>
               </el-menu-item>
@@ -47,8 +50,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import { useStore } from '@/store'
+import { useRouter } from 'vue-router'
 
 // import { useStore } from 'vuex'
 // import { IRootState } from '@/store/type'
@@ -62,22 +66,22 @@ export default defineComponent({
   setup() {
     // const store = useStore<IRootState>()
     const store = useStore()
+    const router = useRouter()
     // const userMenus = store.state.age
     // const userMenus = store.state.login.userMenus
-    // const userMenus = computed(() => store.state.login.userMenus)
-    const userMenus = store.state.login.userMenus
+    const userMenus = computed(() => store.state.login.userMenus)
+    // const userMenus = store.state.login.userMenus
     const isCollapse = ref(true)
-    const handleOpen = (key: string, keyPath: string[]) => {
-      console.log(key, keyPath)
-    }
-    const handleClose = (key: string, keyPath: string[]) => {
-      console.log(key, keyPath)
+
+    const handleMenuItemClick = (item: any) => {
+      router.push({
+        path: item.url ?? '/not-found'
+      })
     }
     return {
       userMenus,
       isCollapse,
-      handleOpen,
-      handleClose
+      handleMenuItemClick
     }
   }
 })

@@ -1,4 +1,5 @@
 import { Module } from 'vuex'
+import { mapMenusToRoutes } from '@/utils/map-menus'
 
 import {
   accountLoginRequest,
@@ -32,6 +33,12 @@ const loginModule: Module<ILoginState, IRootState> = {
     },
     changeUserMenus(state, userMenus: any) {
       state.userMenus = userMenus
+      //注册动态路由
+      const routes = mapMenusToRoutes(userMenus)
+      //将routes => router.main.children
+      routes.forEach((route) => {
+        router.addRoute('main', route)
+      })
     }
   },
   getters: {},
